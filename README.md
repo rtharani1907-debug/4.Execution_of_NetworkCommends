@@ -1,4 +1,7 @@
 # 4.Execution_of_NetworkCommands
+```
+DEVELOPED BY: THARANI RAMESHBABU     REG NO: 212225240170
+```
 ## AIM :Use of Network commands in Real Time environment
 ## Software : Command Prompt And Network Protocol Analyzer
 ## Procedure: To do this EXPERIMENT- follows these steps:
@@ -25,8 +28,36 @@ This commands includes
 <BR>
 • Other IP Commands e.g. show ip route etc.
 <BR>
+```
+Program
+Client side:
+ 
+import socket
+s=socket.socket()
+s.connect(('localhost',9000))
+while True:
+  ip=input("Enter the website you want to ping ")
+  s.send(ip.encode())
+  print(s.recv(1024).decode())
 
+server side:
+
+import socket
+from pythonping import ping
+s=socket.socket()
+s.bind(('localhost',9000))
+s.listen(5)
+c,addr=s.accept()
+while True:
+  hostname=c.recv(1024).decode()
+  try:
+    c.send(str(ping(hostname, verbose=False)).encode())
+  except KeyError:
+    c.send("Not Found".encode())
+```
 ## Output
+<img width="1920" height="1080" alt="Screenshot (574)" src="https://github.com/user-attachments/assets/592adae6-db7b-475d-9162-445dc181ad88" />
+<img width="1920" height="1080" alt="Screenshot (573)" src="https://github.com/user-attachments/assets/0d6c7576-14b0-4106-b473-736cd334304c" />
 
 ## Result
 Thus Execution of Network commands Performed 
